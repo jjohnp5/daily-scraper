@@ -16,6 +16,7 @@ $(document).on('click','.save', function(){
 
 }).then(d=>{
     alert(d.title + " has been saved.")
+    updateArticles();
 })
 })
   // Whenever someone clicks a p tag

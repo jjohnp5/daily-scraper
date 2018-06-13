@@ -2,9 +2,11 @@ let express = require("express");
 let bodyParser = require("body-parser");
 let mongoose = require("mongoose");
 let exphbs = require('express-handlebars')
+let dotenv = require('dotenv');
 
 let axios = require("axios");
 let cheerio = require("cheerio");
+
 
 // Require all models
 let db = require("./models/");
@@ -15,6 +17,7 @@ let PORT = 3000;
 let app = express();
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set('view engine', 'handlebars');
+dotenv.config();
 
 // Configure middleware
 
@@ -26,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/week18Populater");
+mongoose.connect(process.env.MONGO_URL || "mongodb://localhost/week18Populater");
 
 // Routes
 app.get('/', (req, res) => {

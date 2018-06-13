@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/articles/saved">Saved Articles</a>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-primary" id="update-articles">Update Articles</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div id="wrapper">
+    <h1>Articles</h1>
+    <h2></h2>
+    <div id="articles">
+        {{#each data}}
+        <div class="card">
+            <div class="card-header">
+                <h3>
+                    <a href="{{link}}">{{title}}</a>
+                </h3>
+
+            </div>
+            <div class="card-body notes">
+                {{#if note}}
+                <button class="btn update-note" data-id="{{#with note}}{{_id}}{{/with}}">
+
+                    Update Note {{else}}
+                    <button class="btn add-note">
+                        Add Note {{/if}}
+
+
+                    </button>
+                    <div class="add-note-form d-none" data-note="{{#with note}}{{_id}}{{/with}}" id="note-container-{{_id}}">
+
+                        {{#if note}} {{#with note}}
+                        <input type="text" class="form-control" id="{{_id}}">
+                        <input type="button" value="<<  Send Note  >>" data-id="{{_id}}" id="update-note" class="btn btn-success btn-sm"> {{/with}} {{else}}
+                        <input type="text" class="form-control" id="{{_id}}">
+                        <input type="button" value="<<  Send Note  >>" data-id="{{_id}}" id="add-note" class="btn btn-success btn-sm"> {{/if}}
+                    </div>
+                    {{#with note}}
+                    <p class="note note-{{_id}}">
+                        {{body}}
+                    </p>
+                    {{/with}}
+
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div id="notes"></div>
+</div>
+
+<script src="/js/note.js"></script>

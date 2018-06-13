@@ -19,11 +19,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set('view engine', 'handlebars');
 dotenv.config();
 
-// Configure middleware
 
-// Use morgan logger for logging requests
-
-// Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
@@ -156,25 +152,8 @@ app.put('/notes/update/:id', (req,res)=>{
         res.json(err);
     })
 })
-// Route for grabbing a specific Article by id, populate it with it's note
-app.get("/articles/:id", function (req, res) {
-    // TODO
-    // ====
-    // Finish the route so it finds one article using the req.params.id,
-    // and run the populate method with "note",
-    // then responds with the article with the note included
-});
-
-// Route for saving/updating an Article's associated Note
-app.post("/articles/:id", function (req, res) {
-    // TODO
-    // ====
-    // save the new note that gets posted to the Notes collection
-    // then find an article from the req.params.id
-    // and update it's "note" property with the _id of the new note
-});
 
 // Start the server
-app.listen(PORT, function () {
+app.listen(process.env.PORT || PORT, function () {
     console.log("App running on port " + PORT + "!");
 });

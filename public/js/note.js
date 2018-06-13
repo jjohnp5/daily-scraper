@@ -1,6 +1,6 @@
 $('.add-note').on('click', function(){
     console.log($(this)[0].nextElementSibling.classList)
-    $(this).siblings()[0].classList.remove('d-none');
+    $($(this).siblings()[0]).toggleClass('d-none');
 })
 $('.update-note').on('click', function(){
     console.log($(this).siblings())
@@ -8,7 +8,7 @@ $('.update-note').on('click', function(){
     let text = $(`.note-${noteId}`).text().trim()
     console.log($(`#${noteId}`))
     $(`#${noteId}`).val(text);
-    $(this).siblings()[0].classList.remove('d-none');
+    $($(this).siblings()[0]).toggleClass('d-none');
 })
   // When you click the savenote button
   $(document).on("click", "#add-note", function() {
